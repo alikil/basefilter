@@ -1,6 +1,5 @@
 import * as fs from "fs";
 import * as iconvlite from "iconv-lite";
-import { resolve } from "dns";
 function readFileSync_encoding(filename: string | number | Buffer | import("url").URL, encoding: string) {
     var content = fs.readFileSync(filename);
     return iconvlite.decode(content, encoding);
