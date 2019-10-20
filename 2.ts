@@ -33,7 +33,7 @@ readFileSync_encoding("badSolveFromList.txt","win1251")
     console.log(elem)
     const sSearch = `{"md5":"${md5}","cap":"${cap}"}`
     var r = new RegExp(sSearch, 'g');
-    towrite = towrite.replace(r,'');
+    towrite = towrite.replace(r,'').replace(/\,\,/gm, ",");
 })
 
 
