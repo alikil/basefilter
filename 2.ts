@@ -10,20 +10,18 @@ let cap = ""
 let Solved = new Set()
 
 readFileSync_encoding("good.txt","win1251")
+.replace(/\[|\]/gm, "")
+.replace(/\},/gm, "}\n")
 .replace(/}\s?\n{/gm, "}|{")
 .split("|")
 .map((elem)=>{
-    md5 = elem.match(/"md5":"(.*?)"/)[1].toString().trim()
-    cap = elem.match(/"cap":"(.*?)"/)[1].toString().trim()    
     Solved.add({
-        md5 : md5,
-        cap : cap        
+        md5 : elem.match(/"md5":"(.*?)"/)[1].toString().trim(),
+        cap : elem.match(/"cap":"(.*?)"/)[1].toString().trim()        
     })
 })
 
 let towrite = JSON.stringify([...Solved])
-let endtowrite = ""
-
 readFileSync_encoding("badSolveFromList.txt","win1251")
 .replace(/}\s?\n{/gm, "}|{")
 .split("|")
@@ -36,50 +34,4 @@ readFileSync_encoding("badSolveFromList.txt","win1251")
     towrite = towrite.replace(r,'').replace(/\,\,/gm, ",");
 })
 
-
-
 fs.writeFileSync("new.txt", towrite);
-//console.log(towrite)
-
-
-
-
-
-/*
-//.split('\n')
-.map((line) => { 
-    const readyline = line.trim();
-    return readyline
-})
-//.filter(Boolean)
-
-
-const badSolveFromList = readFileSync_encoding("badSolveFromList.txt","win1251")
-.toString()
-.split('\n')
-.map((line2) => {
-    const readyline2 = line2.trim();
-    return readyline2
-})
-.filter(Boolean)
-const allArray = [...goodfile,...badSolveFromList]
-
-let fullSet = new Set(); fullSet.add(allArray)
-
-const arrayfromset = Array.from(fullSet)
-
-
-
-
-//console.log(fullSet)
-console.log(typeof(fullSet))
-console.log(typeof(allArray))
-console.log(typeof(goodfile))
-console.log(console.log(arrayfromset))
-
-*/
-
-
-
-
-
