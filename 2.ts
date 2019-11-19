@@ -17,6 +17,7 @@ readFileSync_encoding("good.txt", "win1251")
 .map((elem) => {
     Solved.add({
         md5 : elem.match(/"md5":"(.*?)"/)[1].toString().trim(),
+        // tslint:disable-next-line:object-literal-sort-keys
         cap : elem.match(/"cap":"(.*?)"/)[1].toString().trim(),
     });
 });
